@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login component should render as expected 1`] = `
+<React.Fragment>
+  <Cell
+    xs={12}
+  >
+    <WithStyles(SimpleCard)
+      style={
+        Object {
+          "position": "relative",
+        }
+      }
+    >
+      <div>
+        <WithStyles(Typography)
+          align="center"
+          gutterBottom={true}
+          variant="display1"
+        >
+          Curios
+        </WithStyles(Typography)>
+        <WithStyles(Typography)
+          align="center"
+          variant="subheading"
+        >
+          Login with your email
+        </WithStyles(Typography)>
+        <Component
+          messageType="error"
+        />
+        <WithStyles(EmailLogin)
+          emailError={null}
+          emailValue=""
+          onEmailChange={[Function]}
+          onPasswordChange={[Function]}
+          onSubmit={[Function]}
+          passwordValue=""
+          t={[Function]}
+        />
+      </div>
+    </WithStyles(SimpleCard)>
+  </Cell>
+</React.Fragment>
+`;

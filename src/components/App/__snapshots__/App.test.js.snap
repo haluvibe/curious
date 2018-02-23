@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> renders correctly 1`] = `
+<div
+  className="App"
+>
+  <header
+    className="App-header"
+  >
+    <img
+      alt="logo"
+      className="App-logo"
+      src="logo.svg"
+    />
+    <h1
+      className="App-title"
+    >
+      Welcome to React
+    </h1>
+  </header>
+  <p
+    className="App-intro"
+  >
+    To get started, edit 
+    <code>
+      src/App.js
+    </code>
+     and save to reload.
+  </p>
+  <button
+    className="js-btn-click-me"
+    onClick={[Function]}
+  >
+    Click me
+  </button>
+  <Link
+    replace={false}
+    to="/form"
+  >
+    Form Page
+  </Link>
+  <Link
+    replace={false}
+    to="/login"
+  >
+    Login Page
+  </Link>
+</div>
+`;

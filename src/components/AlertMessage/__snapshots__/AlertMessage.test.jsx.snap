@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AlertMessage component should render as expected 1`] = `
+<WithStyles(AlertMessage)
+  onClose={[Function]}
+  open={false}
+/>
+`;

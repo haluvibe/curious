@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> renders correctly 1`] = `
+<React.Fragment>
+  <WithStyles(AppBar)
+    className="MiniDrawer-appBar-1"
+  >
+    <WithStyles(Toolbar)
+      disableGutters={true}
+    >
+      <WithStyles(IconButton)
+        aria-label="open drawer"
+        className="MiniDrawer-menuButton-5"
+        color="inherit"
+        onClick={[Function]}
+      >
+        <pure(Menu) />
+      </WithStyles(IconButton)>
+      <WithStyles(Typography)
+        className="MiniDrawer-flex-3"
+        color="inherit"
+        noWrap={true}
+        variant="title"
+      >
+        Curious
+      </WithStyles(Typography)>
+      <WithStyles(Button)
+        className="MiniDrawer-loginButton-4"
+        color="inherit"
+      >
+        Login
+      </WithStyles(Button)>
+    </WithStyles(Toolbar)>
+  </WithStyles(AppBar)>
+  <WithStyles(Drawer)
+    classes={
+      Object {
+        "paper": "MiniDrawer-drawerPaper-7 MiniDrawer-drawerPaperClose-8",
+      }
+    }
+    open={false}
+    variant="permanent"
+  >
+    <div
+      className="MiniDrawer-drawerInner-9"
+    >
+      <div
+        className="MiniDrawer-drawerHeader-10"
+      >
+        <WithStyles(IconButton)
+          onClick={[Function]}
+        >
+          <pure(ChevronLeft) />
+        </WithStyles(IconButton)>
+      </div>
+      <WithStyles(Divider) />
+      <WithStyles(List)>
+        <WithStyles(ListItem)
+          button={true}
+        >
+          <WithStyles(ListItemIcon)>
+            <pure(Report) />
+          </WithStyles(ListItemIcon)>
+          <WithStyles(ListItemText)
+            primary="Inbox"
+          />
+        </WithStyles(ListItem)>
+        <WithStyles(ListItem)
+          button={true}
+        >
+          <WithStyles(ListItemIcon)>
+            <pure(Star) />
+          </WithStyles(ListItemIcon)>
+          <WithStyles(ListItemText)
+            primary="Starred"
+          />
+        </WithStyles(ListItem)>
+      </WithStyles(List)>
+    </div>
+  </WithStyles(Drawer)>
+</React.Fragment>
+`;

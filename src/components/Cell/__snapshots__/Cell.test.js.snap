@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cell component should render as expected 1`] = `
+<WithStyles(GridWrapper)
+  item={true}
+  xs={12}
+/>
+`;

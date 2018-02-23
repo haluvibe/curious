@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmailLogin component should render as expected 1`] = `
+<form
+  autoComplete="off"
+  className="EmailLogin-container-1"
+  noValidate={true}
+  onSubmit={[Function]}
+>
+  <div
+    className="form__row email-login-form__row"
+  >
+    <TextField
+      className="EmailLogin-textField-2"
+      error={false}
+      id="email"
+      inputRef={[Function]}
+      label="email address"
+      margin="normal"
+      onChange={[Function]}
+      required={false}
+      select={false}
+      type="email"
+      value=""
+    />
+    <br />
+    <TextField
+      autoComplete="current-password"
+      className="EmailLogin-textField-2"
+      id="password"
+      inputRef={[Function]}
+      label="password"
+      margin="normal"
+      onChange={[Function]}
+      required={false}
+      select={false}
+      type="password"
+      value=""
+    />
+  </div>
+  <div
+    className="form__row email-login-form__row"
+  >
+    <WithStyles(Button)
+      className="EmailLogin-button-3"
+      label="Primary"
+      variant="raised"
+    >
+      <input
+        type="submit"
+        value="Login"
+      />
+    </WithStyles(Button)>
+  </div>
+  <div
+    className="form__row email-login-form__row"
+  >
+    <WithStyles(Button)
+      className="EmailLogin-button-3"
+      label="Secondary"
+      variant="raised"
+    >
+      <Link
+        replace={false}
+        to="/forgot-password"
+      >
+        Forgot password?
+      </Link>
+    </WithStyles(Button)>
+  </div>
+</form>
+`;

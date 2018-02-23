@@ -1,0 +1,8 @@
+{
+  "extends": "fbjs/strict",
+  "plugins": ["react", "jsx-a11y", "import"],
+  "rules": {
+    "one-var": 0,
+    "indent": ["error", 2]
+  }
+}

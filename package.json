@@ -1,0 +1,67 @@
+{
+  "name": "curious",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "firebase": "^4.10.0",
+    "i18next": "^10.4.1",
+    "i18next-browser-languagedetector": "^2.1.0",
+    "jss": "^9.8.0",
+    "jss-nested": "^6.0.1",
+    "material-ui": "next",
+    "material-ui-icons": "^1.0.0-beta.17",
+    "re-base": "^3.2.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-i18next": "^7.3.6",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.1",
+    "recompose": "^0.26.0",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^5.9.1",
+    "redux-thunk": "^2.2.0",
+    "typeface-roboto": "^0.0.54"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "test:coverage": "yarn test -- --coverage",
+    "test:coverage:watch": "yarn test -- --coverage --watch",
+    "test:reset": "yarn test -- --no-cache --coverage",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.1",
+    "eslint": "^4.17.0",
+    "eslint-config-fbjs": "^2.0.1",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-flowtype": "^2.44.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
+    "eslint-plugin-relay": "^0.0.21",
+    "flow-bin": "^0.65.0",
+    "redux-mock-store": "^1.5.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/pages/**/*.{js,jsx}",
+      "src/components/**/*.{js,jsx}",
+      "src/actions/**/*.{js,jsx}",
+      "src/reducers/**/*.{js,jsx}",
+      "!src/routes/**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ],
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"
+    }
+  }
+}

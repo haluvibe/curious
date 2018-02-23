@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Paper component should render as expected 1`] = `
+<Cell
+  classes={
+    Object {
+      "paper": "Cell-paper-1",
+    }
+  }
+  xs={12}
+/>
+`;

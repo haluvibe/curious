@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card component should render as expected 1`] = `
+<SimpleCard
+  classes={
+    Object {
+      "bullet": "SimpleCard-bullet-2",
+      "card": "SimpleCard-card-1",
+      "pos": "SimpleCard-pos-4",
+      "title": "SimpleCard-title-3",
+    }
+  }
+/>
+`;

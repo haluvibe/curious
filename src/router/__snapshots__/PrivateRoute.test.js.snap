@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PrivateRoute component should render as expected 1`] = `
+<Route
+  exact={true}
+  path="/form"
+  render={[Function]}
+/>
+`;
