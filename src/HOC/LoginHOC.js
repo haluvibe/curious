@@ -20,7 +20,6 @@ const LoginHOCWrapper = InnerComponent =>
         .auth()
         .getRedirectResult()
         .then(({ user }) => {
-          console.log("test");
           if (user) {
             this.setState({ redirect: true });
           }
@@ -68,9 +67,7 @@ const LoginHOCWrapper = InnerComponent =>
         const label = error.code
           .replace("/", "_")
           .replace(new RegExp("-", "g"), "_");
-        console.error(error);
-        console.log(error.code);
-        console.log(error.message);
+
         switch (error.code) {
         case "auth/user-not-found":
         case "auth/invalid-email":
@@ -93,52 +90,52 @@ const LoginHOCWrapper = InnerComponent =>
       }
     };
 
-    handleLoginWithOAuthRedirect = provider => {
-      return provider;
-      // console.log("provider", provider);
-      // let firebaseProvider;
-      // switch (provider) {
-      // case "google": {
-      //     firebaseProvider = new firebase.auth.GoogleAuthProvider();
-      //     break;
-      // }
-      // case "twitter": {
-      //     firebaseProvider = new firebase.auth.TwitterAuthProvider();
-      //     break;
-      // }
-      // case "facebook": {
-      //     firebaseProvider = new firebase.auth.FacebookAuthProvider();
-      //     break;
-      // }
-      // case "github": {
-      //     firebaseProvider = new firebase.auth.GithubAuthProvider();
-      //     break;
-      // }
-      // default: {
-      //     break;
-      // }
-      // }
-      // app
-      //     .auth()
-      //     .signInWithRedirect(firebaseProvider)
-      //     .then(this.authHandler);
-    };
+    // handleLoginWithOAuthRedirect = provider => {
+    //   return provider;
+    // console.log("provider", provider);
+    // let firebaseProvider;
+    // switch (provider) {
+    // case "google": {
+    //     firebaseProvider = new firebase.auth.GoogleAuthProvider();
+    //     break;
+    // }
+    // case "twitter": {
+    //     firebaseProvider = new firebase.auth.TwitterAuthProvider();
+    //     break;
+    // }
+    // case "facebook": {
+    //     firebaseProvider = new firebase.auth.FacebookAuthProvider();
+    //     break;
+    // }
+    // case "github": {
+    //     firebaseProvider = new firebase.auth.GithubAuthProvider();
+    //     break;
+    // }
+    // default: {
+    //     break;
+    // }
+    // }
+    // app
+    //     .auth()
+    //     .signInWithRedirect(firebaseProvider)
+    //     .then(this.authHandler);
+    // };
 
     render () {
-      console.log(this.state.emailError);
+      const { redirect, ...rest } = this.state;
       // const providers = ["google", "twitter", "facebook", "github"];
-      return this.state.redirect ?
+      return redirect ?
         <Redirect to={"/form"} />
         :
         <InnerComponent
           {...this.props}
-          {...this.state}
+          {...rest}
           handleEmailChange={this.handleEmailChange}
           handlePasswordChange={this.handlePasswordChange}
           handleDisplayNameChange={this.handleDisplayNameChange}
           handleLoginWithEmailRedirect={this.handleLoginWithEmailRedirect}
           authHandler={this.authHandler}
-          handleLoginWithOAuthRedirect={this.handleLoginWithOAuthRedirect}
+          // handleLoginWithOAuthRedirect={this.handleLoginWithOAuthRedirect}
           // providers={providers}
         />
       ;

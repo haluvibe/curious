@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginHOC render its child wrapper render with props 1`] = `
+<Component
+  authHandler={[Function]}
+  displayNameValue=""
+  emailError={null}
+  emailValue=""
+  handleDisplayNameChange={[Function]}
+  handleEmailChange={[Function]}
+  handleLoginWithEmailRedirect={[Function]}
+  handlePasswordChange={[Function]}
+  loginOrRegister="login"
+  passwordError=""
+  passwordValue=""
+/>
+`;

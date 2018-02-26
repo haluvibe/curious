@@ -12,7 +12,11 @@ module.exports = function (wallaby) {
   return {
     files: [
       "src/**/*.+(js|jsx|json|snap|css|less|sass|scss|jpg|jpeg|gif|png|svg)",
-      "!src/**/*.test.js?(x)"
+      "!src/**/*.test.js?(x)",
+      "!src/registerServiceWorker.js",
+      "!src/store.js",
+      "!src/index.js",
+      "!src/quokkaPlayground.js"
     ],
 
     tests: ["src/**/*.test.js?(x)"],
@@ -29,6 +33,10 @@ module.exports = function (wallaby) {
       })
     },
 
+    hints: {
+      ignoreCoverage: "istanbul ignore"
+    },
+
     setup: wallaby => {
       const jestConfig = require("react-scripts/scripts/utils/createJestConfig")(
         p => require.resolve("react-scripts/" + p)
@@ -37,6 +45,12 @@ module.exports = function (wallaby) {
         k => ~k.indexOf("^.+\\.(js|jsx") && void delete jestConfig.transform[k]
       );
       delete jestConfig.testEnvironment;
+      if (jestConfig.setupTestFrameworkScriptFile) {
+        jestConfig.setupTestFrameworkScriptFile = jestConfig.setupTestFrameworkScriptFile.replace(
+          "<rootDir>",
+          wallaby.projectCacheDir
+        );
+      }
       wallaby.testFramework.configure(jestConfig);
     },
 
