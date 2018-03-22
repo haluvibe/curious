@@ -1,4 +1,9 @@
 import React, { Fragment } from "react";
+import { connect } from "react-redux";
+import { compose } from "recompose";
+import { translate } from "react-i18next";
+import { app } from "../../firebase/rebase.config.js";
+import * as actions from "../../actions";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import classNames from "classnames";
@@ -16,6 +21,7 @@ import { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
 import ReportIcon from "material-ui-icons/Report";
 import StarIcon from "material-ui-icons/Star";
 import Button from "material-ui/Button";
+import { withRouter, Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -109,8 +115,25 @@ class MiniDrawer extends React.Component {
     this.setState({ open: false });
   };
 
+  handleLogin = () => {
+    const { isAuthenticated, setIsAuthenticated, history } = this.props;
+    if (isAuthenticated) {
+      app
+        .auth()
+        .signOut()
+        .then(
+          () => setIsAuthenticated(false),
+          error => {
+            throw new Error(error);
+          }
+        );
+    } else {
+      history.push("/login");
+    }
+  };
+
   render () {
-    const { classes, theme } = this.props;
+    const { classes, theme, history, t, isAuthenticated } = this.props;
 
     return (
       <Fragment>
@@ -138,10 +161,14 @@ class MiniDrawer extends React.Component {
               noWrap
               className={classes.flex}
             >
-              Curious
+              <Link to={"/"}>Curious</Link>
             </Typography>
-            <Button className={classes.loginButton} color="inherit">
-              Login
+            <Button
+              className={classes.loginButton}
+              color="inherit"
+              onClick={this.handleLogin}
+            >
+              {isAuthenticated ? t("logout") : t("login")}
             </Button>
           </Toolbar>
         </AppBar>
@@ -158,22 +185,22 @@ class MiniDrawer extends React.Component {
           <div className={classes.drawerInner}>
             <div className={classes.drawerHeader}>
               <IconButton onClick={this.handleDrawerClose}>
-                {theme.direction === "rtl" ?
+                {theme.direction === "rtl" ? 
                   <ChevronRightIcon />
-                  :
+                  : 
                   <ChevronLeftIcon />
                 }
               </IconButton>
             </div>
             <Divider />
             <List>
-              <ListItem button>
+              <ListItem button onClick={() => history.push("/inbox")}>
                 <ListItemIcon>
                   <ReportIcon />
                 </ListItemIcon>
                 <ListItemText primary="Inbox" />
               </ListItem>
-              <ListItem button>
+              <ListItem button onClick={() => history.push("/starred")}>
                 <ListItemIcon>
                   <StarIcon />
                 </ListItemIcon>
@@ -192,4 +219,15 @@ MiniDrawer.propTypes = {
   theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(MiniDrawer);
+const mapStateToProps = ({ userReducer }) => ({
+  isAuthenticated: userReducer.isAuthenticated
+});
+
+const enhance = compose(
+  connect(mapStateToProps, actions),
+  withRouter,
+  translate("header"),
+  withStyles(styles, { withTheme: true })
+);
+
+export default enhance(MiniDrawer);

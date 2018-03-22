@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-// import firebase from "firebase";
-import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import Loading from "../components/Loading/Loading";
+import * as actions from "../actions";
 import { app } from "../firebase/rebase.config";
+import { Redirect } from "react-router-dom";
 
-const LoginHOCWrapper = InnerComponent =>
+const LoginHOCWrapper = InnerComponent => {
   class LoginHOC extends Component {
     state = {
       emailValue: "",
@@ -12,35 +14,26 @@ const LoginHOCWrapper = InnerComponent =>
       loginOrRegister: "login",
       emailError: null,
       passwordError: "",
-      redirect: false
+      redirect: false,
+      loading: false
     };
-
-    componentWillMount () {
-      app
-        .auth()
-        .getRedirectResult()
-        .then(({ user }) => {
-          if (user) {
-            this.setState({ redirect: true });
-          }
-        })
-        .catch(error => {
-          throw new Error(error);
-        });
-    }
 
     handleLoginWithEmailRedirect = event => {
       event.preventDefault();
 
       const { emailValue, passwordValue } = this.state;
-
+      this.setState({ loading: true });
       app
         .auth()
         .signInWithEmailAndPassword(emailValue, passwordValue)
-        .then(({ user }) => {
-          this.setState({ redirect: true });
+        .then(() => {
+          this.props.setIsAuthenticated(true);
+          this.setState({ loading: false });
         })
-        .catch(this.authHandler);
+        .catch(error => {
+          throw new Error(error);
+          this.setState({ loading: false });
+        });
     };
 
     handleEmailChange = emailValue => {
@@ -71,62 +64,64 @@ const LoginHOCWrapper = InnerComponent =>
         switch (error.code) {
         case "auth/user-not-found":
         case "auth/invalid-email":
-          {
-            this.setState({
-              emailError: error.message
-            });
-          }
+          this.setState({
+            emailError: error.message
+          });
           break;
         case "auth/wrong-password":
-          {
-            this.setState({
-              passwordError: error.message
-            });
-          }
+          this.setState({
+            passwordError: error.message
+          });
           break;
         default:
-          console.error(error);
+          throw new Error(error);
         }
       }
     };
 
     // handleLoginWithOAuthRedirect = provider => {
     //   return provider;
-    // console.log("provider", provider);
-    // let firebaseProvider;
-    // switch (provider) {
-    // case "google": {
+    //   console.log("provider", provider);
+    //   let firebaseProvider;
+    //   switch (provider) {
+    //   case "google": {
     //     firebaseProvider = new firebase.auth.GoogleAuthProvider();
     //     break;
-    // }
-    // case "twitter": {
+    //   }
+    //   case "twitter": {
     //     firebaseProvider = new firebase.auth.TwitterAuthProvider();
     //     break;
-    // }
-    // case "facebook": {
+    //   }
+    //   case "facebook": {
     //     firebaseProvider = new firebase.auth.FacebookAuthProvider();
     //     break;
-    // }
-    // case "github": {
+    //   }
+    //   case "github": {
     //     firebaseProvider = new firebase.auth.GithubAuthProvider();
     //     break;
-    // }
-    // default: {
+    //   }
+    //   default: {
     //     break;
-    // }
-    // }
-    // app
+    //   }
+    //   }
+    //   app
     //     .auth()
     //     .signInWithRedirect(firebaseProvider)
     //     .then(this.authHandler);
     // };
 
     render () {
-      const { redirect, ...rest } = this.state;
+      const { loading, ...rest } = this.state;
+      const { isAuthenticated } = this.props;
+
+      if (isAuthenticated) {
+        return <Redirect to={"/form"} />;
+      }
+      if (loading) {
+        return <Loading />;
+      }
       // const providers = ["google", "twitter", "facebook", "github"];
-      return redirect ?
-        <Redirect to={"/form"} />
-        :
+      return (
         <InnerComponent
           {...this.props}
           {...rest}
@@ -138,8 +133,14 @@ const LoginHOCWrapper = InnerComponent =>
           // handleLoginWithOAuthRedirect={this.handleLoginWithOAuthRedirect}
           // providers={providers}
         />
-      ;
+      );
     }
-  };
+  }
+  const mapStateToProps = store => ({
+    isAuthenticated: store.userReducer.isAuthenticated
+  });
+
+  return connect(mapStateToProps, actions)(LoginHOC);
+};
 
 export default LoginHOCWrapper;
